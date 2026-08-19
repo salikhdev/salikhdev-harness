@@ -28,8 +28,8 @@ va tekshiruv buyrug'ini shunga moslab yoz. Gradle wrapper yo'q bo'lsa `gradle te
 
 ## 2-bosqich — Matt Pocock skill'lari
 
-`grill-with-docs`, `to-spec`, `to-tickets`, `implement`, `tdd`, `code-review`
-mavjudligini tekshir.
+`grill-with-docs`, `to-spec`, `to-tickets`, `implement`, `tdd`,
+`code-review` mavjudligini tekshir.
 
 Yo'q bo'lsa — foydalanuvchiga ayt va tasdiq so'ragach o'rnat:
 
@@ -37,9 +37,19 @@ Yo'q bo'lsa — foydalanuvchiga ayt va tasdiq so'ragach o'rnat:
 npx skills@latest add mattpocock/skills -g
 ```
 
-Bor bo'lsa, `docs/agents/issue-tracker.md` bor-yo'qligini qara. Yo'q bo'lsa
-`setup-matt-pocock-skills` skill'ini chaqir va u tugagach shu yerga qayt.
-Uning yozgan fayllarini qayta yozma.
+`docs/agents/issue-tracker.md` bor-yo'qligini qara.
+
+**Yo'q bo'lsa — shu yerda to'xta.** `setup-matt-pocock-skills` ni
+chaqirishga urinma: uning frontmatter'ida `disable-model-invocation`
+bor, ya'ni uni faqat foydalanuvchi o'zi ishga tushira oladi. Uning
+ishini boshqa yo'l bilan ham takrorlama — fayllarini o'rniga yozma.
+
+Foydalanuvchiga shunday ayt va turni tugat:
+
+> Avval `/setup-matt-pocock-skills` ni ishga tushiring, keyin
+> `/setup-salikhdev` ni qayta yozing — qolganini davom ettiraman.
+
+Keyingi bosqichlarga o'tma.
 
 ## 3-bosqich — savollar
 

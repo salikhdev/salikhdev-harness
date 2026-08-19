@@ -50,6 +50,20 @@ Har bosqichda:
 davom etishni tasdiqlaydi. Bu ataylab — noto'g'ri spec bilan 5 ta bosqich
 yurgizishdan ko'ra bir joyda to'xtash arzon.
 
+### Skill'ni qanday ishga tushirish
+
+Ba'zi skill'lar `disable-model-invocation` bilan belgilangan — ularni
+sen chaqira olmaysan, faqat foydalanuvchi yoza oladi.
+
+Har bosqichdan oldin tegishli `SKILL.md` ning frontmatter'ini tekshir:
+
+- **`disable-model-invocation` yo'q** → skill'ni o'zing chaqir
+- **bor** → foydalanuvchiga aniq ayt: "Endi `/<skill-nomi>` ni yozing.
+  Tugagach menga ayting, davom ettiraman." Va turni tugat.
+
+Chaqira olmagan skill'ning ishini boshqa yo'l bilan takrorlama —
+bosqichni o'zing bajarib qo'yma.
+
 ### Muhim ketma-ketlik qoidasi
 
 `grill-with-docs` tugagach `to-spec` ni **o'sha kontekstda** ishga tushir.
