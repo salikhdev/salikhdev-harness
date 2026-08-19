@@ -1,10 +1,19 @@
 ---
 name: salikhdev-spring-boot
-description: Salikhdev conventions for Spring Boot backend work — package layout, domain/persistence separation, mapping, snake_case API contract, error format, JPA and Liquibase rules, security, OpenFeign and RestClient integration, and test style. Load before writing, editing, or reviewing Java backend code.
+description: Salikhdev conventions for Spring Boot 4 backend work — package layout, domain/persistence separation, mapping, snake_case API contract, error format, JPA and Liquibase rules, security, OpenFeign and RestClient integration, and test style. Load before writing, editing, or reviewing Java backend code.
 ---
 
-Java 17, Gradle (Kotlin DSL), Spring Boot 3.x. Odatda bitta modul;
+Java 17, Gradle (Kotlin DSL), **Spring Boot 4.1**. Odatda bitta modul;
 mikroservis bo'lsa har servis shu qoidalarga alohida amal qiladi.
+
+Boot 4 farqlari (Boot 3 dan kelgan kodda uchraydi):
+
+- Starter'lar modullashtirilgan: `spring-boot-starter-webmvc`
+  (eski `-web` emas). Test uchun har starter'ning o'z `-test` artefakti bor,
+  bitta umumiy `spring-boot-starter-test` o'rniga.
+- Jackson 3 — standart. `com.fasterxml.jackson` importlari o'zgargan.
+- JUnit 6, Jakarta EE 11, Spring Framework 7.
+- Java 17 minimal talab bo'lib qoladi.
 
 ## Paket tuzilishi
 
@@ -151,13 +160,28 @@ Ikkita mapper, ikkalasi ham MapStruct:
 Base path `/api/v1/...`, versiya URL'da.
 
 **Kirish ham, chiqish ham `snake_case`.** Request body, query param,
-response body — hammasi. Jackson global strategiya bilan:
+response body — hammasi. Sozlash `application.yml` da, kodda emas:
 
-```java
-builder.propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+```yaml
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 ```
 
+Dasturiy `ObjectMapper` bean'i yozilmaydi — konfiguratsiya xossasi yetarli
+va Jackson versiyasi o'zgarganda buzilmaydi.
+
 DTO'larda `@JsonProperty` yozilmaydi. Java kodi `camelCase` qoladi.
+
+> Tekshirilsin: Boot 4 + Jackson 3 da bu xossa ishlashi kutiladi, lekin
+> birinchi endpoint yozilganda javob haqiqatan `snake_case` chiqayotganini
+> ko'z bilan tasdiqlang. Ishlamasa — Jackson 3 hujjatidan dasturiy
+> muqobilini toping va shu bo'limni yangilang.
+
+Validatsiya xatolari alohida masala: ular DTO maydon nomlarini
+`camelCase` da qaytaradi, chunki validatsiya serializatsiyadan oldin
+ishlaydi. `@RestControllerAdvice` da `details` ni to'ldirayotganda maydon
+nomini qo'lda `snake_case` ga o'giring.
 
 Javob doim wrapper ichida:
 
@@ -272,6 +296,13 @@ public interface PaymentClient {
 
 - Feign va `RestClient` bir maqsadda aralashtirilmaydi: ichki servislar
   Feign, tashqi API'lar `RestClient`.
+
+> Boot 4 uchun ochiq savol: Spring Cloud OpenFeign ning 4.x bilan
+> mosligini birinchi mikroservis loyihasida tekshiring. Boot 4 da
+> Spring'ning o'zida HTTP Interface Client (`@HttpExchange` +
+> `RestClient`) bor — qo'shimcha kutubxonasiz, API versiyalash
+> qo'llab-quvvatlashi bilan. Agar Feign muammo bersa yoki
+> `@HttpExchange` yetarli chiqsa, bu bo'limni o'shanga o'zgartiring.
 - Javob turi — o'sha `ApiResponse<T>` wrapper'i.
 - Har client'da timeout va retry aniq belgilanadi.
 - Feign xatosi `ErrorDecoder` orqali `BusinessException` ga o'giriladi;
@@ -355,7 +386,9 @@ hozirgi muammoni yechsa — qoladi; faqat kelajakni taxmin qilsa — yo'q.
 
 ## Testlar
 
-JUnit 5 + AssertJ + Mockito. Integratsiya testlari — Testcontainers.
+JUnit 6 + AssertJ + Mockito. Integratsiya testlari — Testcontainers.
+Boot 4 da test bog'liqliklari starter bo'yicha alohida qo'shiladi
+(`spring-boot-starter-webmvc-test` va h.k.).
 
 - **Domen modeli → toza unit test.** Spring ham, mock ham kerak emas.
   Ajratishning asosiy foydasi shu — biznes qoidalari eng tez va eng
