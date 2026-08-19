@@ -21,16 +21,31 @@ faqat **qamrov**: har bir acceptance criteria uchun test bormi.
    - Test nomi AC ni tavsiflaydi
    - Test tanasi AC dagi shartni tekshiradi
 
-4. Jadval chiqar:
+4. Topilgan har bir test uchun **ikkinchi tekshiruv**: test AC
+   *matnidagi* shartni tekshiryaptimi, yoki o'zi qo'ygan boshqa
+   shartnimi?
+
+   Ogohlantiruvchi belgilar:
+   - Testda spec'da umuman yo'q qiymat ishlatilgan
+   - Test o'zi yaratgan to'plamni tekshiradi (haqiqiy manba o'rniga)
+   - AC "5 marta" desa, test 6 ni tekshiradi
+   - Test nomi AC ga mos, tanasi esa boshqa narsani da'vo qiladi
+
+   Bunday holatni **"nomuvofiq"** deb belgila — test mavjud bo'lsa
+   ham qoplangan hisoblanmaydi. Farqni aniq yoz: AC nima deydi,
+   test nimani tekshiryapti.
+
+5. Jadval chiqar:
 
 ```
 | AC | Tavsif | Test | Holat |
 |----|--------|------|-------|
 | AC-1 | to'g'ri parol bilan kirish | AuthServiceTest#loginWithValidPassword | ✓ |
 | AC-2 | muddati o'tgan token | — | YO'Q |
+| AC-4 | tarqalgan parol rad etiladi | PasswordTest#rejectsCommon | NOMUVOFIQ |
 ```
 
-5. Qoplanmagan AC'lar uchun test **nomlarini** taklif qil — test kodini emas.
+6. Qoplanmagan va nomuvofiq AC'lar uchun test **nomlarini** taklif qil — test kodini emas.
    Kod yozish `tdd` skill'ining ishi.
 
 ## Qoidalar
@@ -49,7 +64,7 @@ faqat **qamrov**: har bir acceptance criteria uchun test bormi.
 Oxirida bitta qator xulosa:
 
 ```
-7 ta AC dan 5 tasi qoplangan, 1 tasi qoplanmagan, 1 tasi testlanmaydi.
+7 ta AC dan 4 tasi qoplangan, 1 tasi nomuvofiq, 1 tasi qoplanmagan, 1 tasi testlanmaydi.
 ```
 
-Qoplanmagan AC bor ekan, ish "tayyor" hisoblanmaydi.
+Qoplanmagan yoki nomuvofiq AC bor ekan, ish "tayyor" hisoblanmaydi.

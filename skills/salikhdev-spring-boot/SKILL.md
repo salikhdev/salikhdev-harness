@@ -400,6 +400,17 @@ Boot 4 da test bog'liqliklari starter bo'yicha alohida qo'shiladi
 - Repository implementatsiyasi → Testcontainers. H2 ishlatilmaydi.
 - Test ma'lumotlari — builder/fixture klasslar orqali.
 
+**Qaysi qoida qayerda testlanadi.** Domen metodida yashaydigan qoida
+domen unit testida tekshiriladi — HTTP orqali emas. `@SpringBootTest`
+faqat qatlamlar orasidagi oqim uchun: so'rov keldi, saqlandi, javob
+qaytdi. Qoidaning o'zi (chegara qiymatlar, rad etish shartlari,
+holat o'zgarishi) domen testida.
+
+O'lchov: agar domen unit testlari soni butun test to'plamining
+ozchiligi bo'lsa, qoidalar noto'g'ri qatlamda testlanyapti. Domen
+va entity ajratilgani aynan shu tez, izolyatsiyalangan testlar uchun
+— aks holda ajratishning narxi to'lanadi, foydasi olinmaydi.
+
 Test nomlash: `metod_holat_natija`, oldiga AC raqami:
 
 ```java
@@ -417,6 +428,7 @@ Coverage foizi maqsad qilinmaydi.
 - Bitta implementatsiyali service interfeysi (`XService` + `XServiceImpl`)
 - Entity yoki domen modelini controller'dan qaytarish
 - Biznes qoidasini service ichida takrorlash (domen metodi bor turib)
+- Domen qoidasini `@SpringBootTest` orqali testlash
 - Field injection (`@Autowired` maydonda)
 - `catch (Exception e)` bo'sh yoki faqat log bilan
 - Service ichida `HttpServletRequest` yoki boshqa HTTP tipi

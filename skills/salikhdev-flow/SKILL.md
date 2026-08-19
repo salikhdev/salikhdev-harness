@@ -70,6 +70,23 @@ bosqichni o'zing bajarib qo'yma.
 Orada kontekstni tozalama — intervyuda aniqlangan case'larning katta qismi
 faqat o'sha suhbatda qoladi va `CONTEXT.md` ga tushmaydi.
 
+### Talqin hisoboti
+
+Har bosqich oxirida, darvozadan oldin, o'zingdan so'ra: bu bosqichda
+AC yoki spec matni noaniq bo'lgani uchun talqin qilishga to'g'ri
+keldimi?
+
+Bo'lsa — ro'yxat qilib ko'rsat, har biri uchun uchta narsa: AC raqami,
+matn yana qanday o'qilishi mumkin edi, sen qaysi talqinni olding va
+nega.
+
+Foydalanuvchi tasdiqlamaguncha bosqich tugallangan hisoblanmaydi.
+Talqinni jimgina qabul qilib davom etish — qoida buzilishi, keyin
+`misses.md` ga tushadigan xato.
+
+Talqin bo'lmasa, "talqin qilinmadi" deb bir qator yoz — bu ham
+ma'lumot.
+
 ## 3 — darvozalar
 
 "Darvoza" degani — loyiha `CLAUDE.md` sidagi tekshiruv buyruqlari.
